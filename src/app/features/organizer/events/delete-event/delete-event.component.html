@@ -1,0 +1,15 @@
+<div class="max-w-md mx-auto mt-20 bg-white p-6 shadow rounded text-center">
+  <h2 class="text-xl font-bold text-red-600 mb-4">Delete Event</h2>
+  <p class="mb-6">Are you sure you want to delete this event?</p>
+
+  <div *ngIf="errorMessage" class="text-red-500 mb-4">{{ errorMessage }}</div>
+
+  <div class="flex justify-center gap-4">
+    <button (click)="confirmDelete()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+      Yes, Delete
+    </button>
+    <button (click)="cancel()" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+      Cancel
+    </button>
+  </div>
+</div>

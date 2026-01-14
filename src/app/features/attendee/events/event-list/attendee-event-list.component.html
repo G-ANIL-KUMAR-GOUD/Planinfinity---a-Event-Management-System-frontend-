@@ -1,0 +1,89 @@
+<!-- src/app/features/attendee/events/event-list/attendee-event-list.component.html -->
+
+<app-nav-bar></app-nav-bar>
+
+<div class="container-fluid p-4">
+
+
+    <div *ngIf="events.length === 0" class="d-flex align-items-center justify-content-center" style="min-height: 70vh;">
+        <mat-card class="text-center shadow-lg rounded-lg p-4" style="max-width: 450px;">
+            <mat-card-content>
+
+                
+                <div *ngIf="!loading && !error">
+                    <mat-icon class="text-muted mb-3" style="font-size: 64px;">event_busy</mat-icon>
+                    <h2 class="mat-h2 font-weight-bold mb-2">No Events Found</h2>
+                    <p class="text-muted">
+                        It seems there are no events available right now. Please check back later.
+                    </p>
+                </div>
+                
+                <div *ngIf="loading" class="p-5">
+                    <mat-spinner diameter="60"></mat-spinner>
+                </div>
+
+
+                <div *ngIf="error" class="text-danger p-4">
+                    <mat-icon class="text-danger mb-3" style="font-size: 48px;">error_outline</mat-icon>
+                    <h2 class="h5 font-weight-bold mb-2">Something went wrong</h2>
+                    <p>{{ error }}</p>
+                </div>
+
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <!-- Events Display -->
+    <div *ngIf="events.length > 0">
+        <div class="mb-4 text-center">
+            <h2 class="display-4 font-weight-bold">Upcoming Events</h2>
+            <p class="lead text-muted">Discover and join the exciting events happening soon.</p>
+        </div>
+
+        <div class="row">
+            <div *ngFor="let event of events" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <mat-card class="event-card h-100" (click)="openEventDetails(event)">
+                    <img mat-card-image [src]="'data:' + event.imageContentType + ';base64,' + event.image" alt="{{ event.name }}" class="event-card-image">
+                    <mat-card-content class="p-3">
+                        <h3 class="mat-h3 font-weight-bold mb-2">{{ event.name }}</h3>
+                        <p class="text-muted d-flex align-items-center mb-2">
+                            <mat-icon class="mr-2">event</mat-icon>
+                            <span>{{ event.dateTime | date:'medium' }}</span>
+                        </p>
+                        <p class="text-muted d-flex align-items-center">
+                            <mat-icon class="mr-2">location_on</mat-icon>
+                            <span>{{ event.venue }}</span>
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions class="p-3">
+                        <button mat-flat-button color="primary" class="w-100">View Details</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-eventsbycategory [events]="events"></app-eventsbycategory>
+
+<app-whyattendevents></app-whyattendevents>
+
+<footer id="aboutus" class="app-footer">
+    <div class="footer-container">
+        <div class="footer-about">
+            <h3>About Us</h3>
+            <p>
+                We bring together event organizers and attendees for unforgettable experiences. Our platform makes booking events simple, fast, and secure.
+            </p>
+        </div>
+        <div class="footer-contact">
+            <h3>Contact</h3>
+            <p>Email: support@planfinity.com</p>
+            <p>Phone: +91-9876543210</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Planfinity. All rights reserved.</p>
+    </div>
+</footer>

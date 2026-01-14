@@ -1,0 +1,39 @@
+<div *ngIf="events.length === 0" class="flex items-center justify-center h-full">
+    <mat-card class="max-w-md w-full shadow-lg rounded-lg p-6 text-center">
+        <mat-card-content>
+            <mat-icon class="text-gray-500 text-6xl mb-4">event_busy</mat-icon>
+            <h2 class="text-2xl font-semibold mb-2">No Events Found</h2>
+            <p class="text-gray-600">
+                You haven't created any events yet.
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+
+
+<div class="event-list">
+    <mat-card *ngFor="let event of events" class="event-card">
+        <mat-card-header>
+            <div mat-card-avatar class="event-avatar"></div>
+            <mat-card-title>{{ event.name }}</mat-card-title>
+            <mat-card-subtitle>{{ event.category | titlecase }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image *ngIf="event.image" [src]="'data:' + event.imageContentType + ';base64,' + event.image" alt="{{ event.name }}">
+
+        <mat-card-content>
+            <p><strong>Date & Time:</strong> {{ event.dateTime | date:'fullDate' }} at {{ event.dateTime | date:'shortTime' }}</p>
+            <p><strong>Venue:</strong> {{ event.venue }}</p>
+            <p><strong>Capacity:</strong> {{ event.capacity }}</p>
+            <p><strong>Price:</strong> {{ event.price | currency:'INR' }}</p>
+            <p><strong>Description:</strong> {{ event.description }}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button (click)="editEvent(event)" mat-raised-button color="primary">Edit</button>
+            <button (click)="deleteEvent(event.id)" mat-stroked-button color="accent">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

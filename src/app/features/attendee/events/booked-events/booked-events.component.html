@@ -1,0 +1,36 @@
+<!-- <p>booked-events works!</p>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let event of events">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{event.name}}</mat-panel-title>
+            <mat-panel-description>{{event.date}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{event.description}}</p>
+        <p>Venue: {{event.location}}</p>
+        <button mat-raised-button color="warn">Cancel</button>
+    </mat-expansion-panel>
+</mat-accordion> -->
+
+<h2>Registered Events</h2>
+
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let event of events">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ event.name }}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{ event.dateTime | date: 'longDate' }} | {{ event.venue }}
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p><strong>Price : </strong> {{event.price}}</p>
+        <!-- <p><strong>Organizer:</strong> {{ event.organizer.name }}</p>
+        <p><strong>Contact:</strong> {{ event.organizer.phone }}</p>
+        <p><strong>Description:</strong> {{ event.description }}</p> -->
+
+        <mat-action-row>
+            <button mat-raised-button (click)="viewEvent(event)" color="primary">View</button>
+            <button mat-raised-button (click)="deleteBookedEvent(event.id)" color="warn">Cancel</button>
+        </mat-action-row>
+    </mat-expansion-panel>
+</mat-accordion>

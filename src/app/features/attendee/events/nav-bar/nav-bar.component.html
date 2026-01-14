@@ -1,0 +1,58 @@
+<mat-toolbar color="primary" class="attendee-toolbar">
+    <!-- Leftmost Title -->
+    <span class="toolbar-title">PLANINFINITY</span>
+
+    <!-- Navigation links -->
+    <span class="nav-links">
+    <a mat-button (click)="toggleBookedEvents()">Booked Events</a>
+    <!-- <a mat-button routerLink="/attendee/available-events">Available Events</a> -->
+  </span>
+
+    <span class="spacer"></span>
+
+    <!-- Search Bar -->
+    <span class="search-wrapper">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search Events</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter event name"
+        [(ngModel)]="searchTerm"
+        (input)="searchEvents()"
+      />
+      <button mat-icon-button *ngIf="searchTerm" matSuffix (click)="clearSearch()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <!-- Search Results dropdown -->
+    <div class="search-results" *ngIf="searchResults.length && !showBookedEvents">
+      <div 
+        class="search-result-item" 
+        *ngFor="let result of searchResults"
+        (click)="openEventDetails(result)">
+        {{ result.name }}
+      </div>
+    </div>
+  </span>
+
+    <!-- Profile menu -->
+    <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+    <mat-menu #profileMenu="matMenu">
+        <button mat-menu-item (click)="openProfile()">
+      <mat-icon>person</mat-icon>
+      <span>My Profile</span>
+    </button>
+        <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+    </mat-menu>
+</mat-toolbar>
+
+<div *ngIf="showBookedEvents" class="booked-events-container">
+    <app-booked-events></app-booked-events>
+</div>

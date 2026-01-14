@@ -1,0 +1,29 @@
+.chips-div {
+    margin-inline-start: 130px;
+}
+
+.events-container {
+    margin-top: 10px;
+}
+
+.events-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scroll-behavior: smooth;
+}
+
+.event-card {
+    flex: 0 0 auto;
+    width: 250px;
+}
+
+img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.category-div {
+    margin-left: 20px;
+}

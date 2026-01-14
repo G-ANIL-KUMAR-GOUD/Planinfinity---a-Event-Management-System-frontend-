@@ -1,0 +1,49 @@
+/* Use a variable for the main background to ensure consistency */
+
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+.create-event-container {
+    background-color: #EBF4F6;
+    padding: 1rem;
+    /* Add padding around the card */
+}
+
+.event-form-card {
+    max-width: 950px;
+    margin: 1rem auto;
+    /* Center the card with some margin */
+    padding: 2rem 2.5rem;
+    /* Generous padding inside the card */
+    border-radius: 16px;
+    /* Softer, more modern corners */
+    border: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    /* Subtle shadow for depth */
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+}
+
+.form-subtitle {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+
+/* This targets all form fields for consistent spacing */
+
+mat-form-field {
+    margin-bottom: 1rem;
+}
+
+.submit-button {
+    padding: 12px 50px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    /* Pill shape button */
+    letter-spacing: 0.5px;
+}

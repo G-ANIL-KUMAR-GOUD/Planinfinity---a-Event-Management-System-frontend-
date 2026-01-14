@@ -1,0 +1,72 @@
+<div class="dialog-container">
+    <!-- Close Button -->
+    <button mat-icon-button class="close-button" (click)="dialogRef.close()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <!-- Event Image -->
+    <img *ngIf="data.image" class="event-image" [src]="'data:' + data.imageContentType + ';base64,' + data.image" alt="{{ data.name }}">
+
+    <mat-dialog-content class="mat-typography">
+        <div class="pt-4">
+            <h2 mat-dialog-title class="font-weight-bold mb-1">{{ data.name }}</h2>
+            <p class="text-muted h5">{{ data.category | titlecase }}</p>
+        </div>
+        <hr>
+
+        <p class="mt-3">{{ data.description }}</p>
+
+        <div class="row mt-4">
+            <!-- Left Column: Event Details -->
+            <div class="col-md-6">
+                <h3 class="h6 font-weight-bold text-primary mb-3">EVENT DETAILS</h3>
+                <ul class="list-unstyled">
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">event</mat-icon>
+                        <span>{{ data.dateTime | date:'fullDate' }}</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">schedule</mat-icon>
+                        <span>{{ data.dateTime | date:'shortTime' }}</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">location_on</mat-icon>
+                        <span>{{ data.venue }}</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">people</mat-icon>
+                        <span>{{ data.capacity }} Capacity</span>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <mat-icon class="mr-3">local_offer</mat-icon>
+                        <span>{{ data.price | currency:'INR':'symbol' }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right Column: Organizer Info -->
+            <div class="col-md-6 mt-4 mt-md-0">
+                <h3 class="h6 font-weight-bold text-primary mb-3">ORGANIZER INFO</h3>
+                <ul class="list-unstyled">
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">person</mat-icon>
+                        <span>{{ data.organizer.name }}</span>
+                    </li>
+                    <li class="d-flex align-items-center mb-2">
+                        <mat-icon class="mr-3">phone</mat-icon>
+                        <span>{{ data.organizer.phone }}</span>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <mat-icon class="mr-3">email</mat-icon>
+                        <span>{{ data.organizer.email }}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="p-3">
+        <button mat-stroked-button (click)="dialogRef.close()" class="mr-2">Close</button>
+        <button mat-flat-button color="primary" (click)="bookEvent()">Book Now</button>
+    </mat-dialog-actions>
+</div>

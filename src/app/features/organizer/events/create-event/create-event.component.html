@@ -1,0 +1,87 @@
+<div class="create-event-container">
+    <mat-card class="event-form-card">
+        <mat-card-header>
+            <mat-card-title class="form-title">Create a New Event</mat-card-title>
+            <mat-card-subtitle class="form-subtitle">
+                Fill out the details below to get your event published
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+            <form (ngSubmit)="onSubmit()" [formGroup]="eventForm">
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Event Name</mat-label>
+                            <input matInput formControlName="name" placeholder="e.g., Annual Tech Conference" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Venue</mat-label>
+                            <input matInput formControlName="venue" placeholder="e.g., Grand Convention Center" required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Date & Time</mat-label>
+                            <input matInput type="datetime-local" formControlName="dateTime" required>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Category</mat-label>
+                            <mat-select formControlName="category" required>
+                                <mat-option *ngFor="let category of categories" [value]="category">
+                                    {{ category }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Capacity</mat-label>
+                                    <input matInput type="number" formControlName="capacity" placeholder="e.g., 500" required>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-sm-6">
+                                <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Price (INR)</mat-label>
+                                    <input matInput type="number" formControlName="price" placeholder="e.g., 2500" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="file-upload-container mt-2">
+                            <label class="d-block mb-2 text-muted">Event Image</label>
+                            <input type="file" #fileInput (change)="onFileSelected($event)" hidden>
+                            <button mat-stroked-button type="button" (click)="fileInput.click()" class="w-100">
+                <mat-icon>attach_file</mat-icon>
+                <span *ngIf="!selectedFile">Choose an Image</span>
+                <span *ngIf="selectedFile" class="pl-2">{{ selectedFile }}</span>
+              </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" rows="4" placeholder="Briefly describe the event..." required></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <mat-card-actions class="mt-3 text-center">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="eventForm.invalid">
+            Create Event
+          </button>
+                </mat-card-actions>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
